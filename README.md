@@ -1,2 +1,2 @@
 # Dax
-To keep dax expressions
+To keep dax expressions and power query items
