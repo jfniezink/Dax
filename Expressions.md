@@ -23,10 +23,12 @@ let <br>
 in<br>
 &nbsp;&nbsp;&nbsp;&nbsp;    #"Sorted Rows"<br>
 <br>
+
 # Counts<br>
 <br>
 &nbsp;&nbsp;&nbsp;&nbsp;= Distintcount([waarde])<br>
 <br>
+
 # Running total<br>
 
 RunningTotalTrajecten = IF(SELECTEDVALUE(Dim_Date[date]) >= TODAY(),BLANK(),<br>
