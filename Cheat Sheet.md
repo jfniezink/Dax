@@ -122,8 +122,8 @@ in ascending (ASCG or descending (DESC) way.  br
 |:-:|:-:|
 | = | Equal to |
 | == | Strict equal to |
-|   | Greater than |
-|   | Smaller than |
+| > | Greater than |
+| < | Smaller than |
 | >= | Greater than or equal to |
 | =< | Smaller than or equal to |
 | <> | Not equal to |
