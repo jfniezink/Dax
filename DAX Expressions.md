@@ -41,3 +41,7 @@ RETURN<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;        DISTINCT ( 'Dim_Date'[Date] ),<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;        Intercept + Slope * 'Dim_Date'[Date]<br>
 &nbsp;&nbsp;&nbsp;&nbsp;    )<br>
+
+<br>
+
+TOTALYTD()
