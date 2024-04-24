@@ -37,26 +37,26 @@ sharepoint.contents(url as text, [ApiVersion = 15]) voor sharepoint contents. <b
 
 ## Rest API AFAS connector
 
-let
-&nbsp;&nbsp;&nbsp;&nbsp;  // Vul hier je token
-&nbsp;&nbsp;&nbsp;&nbsp;  Token = "Token"
-&nbsp;&nbsp;&nbsp;&nbsp;  // Onderstaande zorgt voor de juiste authorisatie string
-&nbsp;&nbsp;&nbsp;&nbsp;  BinaryToken = "AfasToke " & Text.Tobinary(Token),
-&nbsp;&nbsp;&nbsp;&nbsp;  // Vul in onderstaande de URL voor verbinding in
-&nbsp;&nbsp;&nbsp;&nbsp;  // Op basis van soort omgeving veranderd de URL:
-&nbsp;&nbsp;&nbsp;&nbsp;  // Productie omgeving = https://000000.rest.afas.online/ProfitRestServices/connectors/
-&nbsp;&nbsp;&nbsp;&nbsp;  // Test omgeving = https://000000.resttest.afas.online/ProfitRestServices/connectors/
-&nbsp;&nbsp;&nbsp;&nbsp;  // Accept omgeving = https://000000.restaccept.afas.online/ProfitRestServices/connectors/
-&nbsp;&nbsp;&nbsp;&nbsp;  URL = "https://000000.rest.afas.online/ProfitRestServices/connectors/",
-&nbsp;&nbsp;&nbsp;&nbsp;  // Vul bij connector het ID van je connector in. Zorg dat je rechten hebt om deze aan te spreken. 
-&nbsp;&nbsp;&nbsp;&nbsp;  Connector = test_connector,
-&nbsp;&nbsp;&nbsp;&nbsp;  // Vul het aantal regels dat geskipt moet worden in onderstaande waarde
-&nbsp;&nbsp;&nbsp;&nbsp;  skipvalue = -1,
-&nbsp;&nbsp;&nbsp;&nbsp;  Skip = "?skip=" & skipvalue
-&nbsp;&nbsp;&nbsp;&nbsp;  // Vul het aantal regels dat opgehaald moet worden in onderstaande waarde
-&nbsp;&nbsp;&nbsp;&nbsp;  takevalue = -1,
-&nbsp;&nbsp;&nbsp;&nbsp;  Take = "?take=" & takevalue
-&nbsp;&nbsp;&nbsp;&nbsp;  Source = Json.Document(Web.Contents(URL&Connector&Skip&Take,[Headers=[Autorisation=BinaryToken]]))
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-in
-&nbsp;&nbsp;&nbsp;&nbsp; Source
+let<br>
+&nbsp;&nbsp;&nbsp;&nbsp;  // Vul hier je token<br>
+&nbsp;&nbsp;&nbsp;&nbsp;  Token = "Token"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;  // Onderstaande zorgt voor de juiste authorisatie string<br>
+&nbsp;&nbsp;&nbsp;&nbsp;  BinaryToken = "AfasToke " & Text.Tobinary(Token),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;  // Vul in onderstaande de URL voor verbinding in<br>
+&nbsp;&nbsp;&nbsp;&nbsp;  // Op basis van soort omgeving veranderd de URL:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;  // Productie omgeving = https://000000.rest.afas.online/ProfitRestServices/connectors/<br>
+&nbsp;&nbsp;&nbsp;&nbsp;  // Test omgeving = https://000000.resttest.afas.online/ProfitRestServices/connectors/<br>
+&nbsp;&nbsp;&nbsp;&nbsp;  // Accept omgeving = https://000000.restaccept.afas.online/ProfitRestServices/connectors/<br>
+&nbsp;&nbsp;&nbsp;&nbsp;  URL = "https://000000.rest.afas.online/ProfitRestServices/connectors/",<br>
+&nbsp;&nbsp;&nbsp;&nbsp;  // Vul bij connector het ID van je connector in. Zorg dat je rechten hebt om deze aan te spreken. <br>
+&nbsp;&nbsp;&nbsp;&nbsp;  Connector = test_connector,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;  // Vul het aantal regels dat geskipt moet worden in onderstaande waarde<br>
+&nbsp;&nbsp;&nbsp;&nbsp;  skipvalue = -1,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;  Skip = "?skip=" & skipvalue<br>
+&nbsp;&nbsp;&nbsp;&nbsp;  // Vul het aantal regels dat opgehaald moet worden in onderstaande waarde<br>
+&nbsp;&nbsp;&nbsp;&nbsp;  takevalue = -1,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;  Take = "?take=" & takevalue<br>
+&nbsp;&nbsp;&nbsp;&nbsp;  Source = Json.Document(Web.Contents(URL&Connector&Skip&Take,[Headers=[Autorisation=BinaryToken]]))<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+in<br>
+&nbsp;&nbsp;&nbsp;&nbsp; Source<br>
