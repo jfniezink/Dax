@@ -41,7 +41,7 @@ let<br>
 &nbsp;&nbsp;&nbsp;&nbsp;  // Vul hier je token<br>
 &nbsp;&nbsp;&nbsp;&nbsp;  Token = "Token",<br>
 &nbsp;&nbsp;&nbsp;&nbsp;  // Onderstaande zorgt voor de juiste authorisatie string<br>
-&nbsp;&nbsp;&nbsp;&nbsp;  BinaryToken = "AfasToke " & Text.Tobinary(Token),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;  BinaryToken = "AfasToken " & Text.Tobinary(Token),<br>
 &nbsp;&nbsp;&nbsp;&nbsp;  // Vul in onderstaande de URL voor verbinding in<br>
 &nbsp;&nbsp;&nbsp;&nbsp;  // Op basis van soort omgeving veranderd de URL:<br>
 &nbsp;&nbsp;&nbsp;&nbsp;  // Productie omgeving = https://000000.rest.afas.online/ProfitRestServices/connectors/<br>
