@@ -38,25 +38,25 @@ sharepoint.contents(url as text, [ApiVersion = 15]) voor sharepoint contents. <b
 ## Rest API AFAS connector
 
 let<br>
-&nbsp;&nbsp;&nbsp;&nbsp;  // Vul hier je token tussen de "" markering<br>
-&nbsp;&nbsp;&nbsp;&nbsp;  Token = "Token",<br>
-&nbsp;&nbsp;&nbsp;&nbsp;  // Onderstaande zorgt voor de juiste authorisatie string<br>
-&nbsp;&nbsp;&nbsp;&nbsp;  BinaryToken = "AfasToken " & Binary.ToText(Text.ToBinary(Token)),<br>
-&nbsp;&nbsp;&nbsp;&nbsp;  // Vul in onderstaande de URL voor verbinding in<br>
-&nbsp;&nbsp;&nbsp;&nbsp;  // Op basis van soort omgeving veranderd de URL:<br>
-&nbsp;&nbsp;&nbsp;&nbsp;  // Productie omgeving = https://000000.rest.afas.online/ProfitRestServices/connectors/<br>
-&nbsp;&nbsp;&nbsp;&nbsp;  // Test omgeving = https://000000.resttest.afas.online/ProfitRestServices/connectors/<br>
-&nbsp;&nbsp;&nbsp;&nbsp;  // Accept omgeving = https://000000.restaccept.afas.online/ProfitRestServices/connectors/<br>
-&nbsp;&nbsp;&nbsp;&nbsp;  URL = "https://000000.rest.afas.online/ProfitRestServices/connectors/",<br>
-&nbsp;&nbsp;&nbsp;&nbsp;  // Vul bij connector het ID van je connector in. Zorg dat je rechten hebt om deze aan te spreken. <br>
-&nbsp;&nbsp;&nbsp;&nbsp;  Connector = test_connector,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;  // Vul het aantal regels dat geskipt moet worden in onderstaande waarde<br>
-&nbsp;&nbsp;&nbsp;&nbsp;  skipvalue = -1,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;  Skip = "?skip=" & skipvalue,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;  // Vul het aantal regels dat opgehaald moet worden in onderstaande waarde<br>
-&nbsp;&nbsp;&nbsp;&nbsp;  takevalue = -1,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;  Take = "?take=" & takevalue,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;  Source = <br>
+&nbsp;&nbsp;&nbsp;&nbsp;// Vul hier je token tussen de "" markering<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Token = "Token",<br>
+&nbsp;&nbsp;&nbsp;&nbsp;// Onderstaande zorgt voor de juiste authorisatie string<br>
+&nbsp;&nbsp;&nbsp;&nbsp;BinaryToken = "AfasToken " & Binary.ToText(Text.ToBinary(Token)),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;// Vul in onderstaande de URL voor verbinding in<br>
+&nbsp;&nbsp;&nbsp;&nbsp;// Op basis van soort omgeving veranderd de URL:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;// Productie omgeving = https://000000.rest.afas.online/ProfitRestServices/connectors/<br>
+&nbsp;&nbsp;&nbsp;&nbsp;// Test omgeving = https://000000.resttest.afas.online/ProfitRestServices/connectors/<br>
+&nbsp;&nbsp;&nbsp;&nbsp;// Accept omgeving = https://000000.restaccept.afas.online/ProfitRestServices/connectors/<br>
+&nbsp;&nbsp;&nbsp;&nbsp;URL = "https://000000.rest.afas.online/ProfitRestServices/connectors/",<br>
+&nbsp;&nbsp;&nbsp;&nbsp;// Vul bij connector het ID van je connector in. Zorg dat je rechten hebt om deze aan te spreken. <br>
+&nbsp;&nbsp;&nbsp;&nbsp;Connector = test_connector,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;// Vul het aantal regels dat geskipt moet worden in onderstaande waarde<br>
+&nbsp;&nbsp;&nbsp;&nbsp;skipvalue = -1,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Skip = "?skip=" & skipvalue,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;// Vul het aantal regels dat opgehaald moet worden in onderstaande waarde<br>
+&nbsp;&nbsp;&nbsp;&nbsp;takevalue = -1,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Take = "?take=" & takevalue,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Source = <br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Json.Document(<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Web.Contents(<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;URL & <br>
