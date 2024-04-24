@@ -39,7 +39,7 @@ sharepoint.contents(url as text, [ApiVersion = 15]) voor sharepoint contents. <b
 
 let<br>
 &nbsp;&nbsp;&nbsp;&nbsp;  // Vul hier je token<br>
-&nbsp;&nbsp;&nbsp;&nbsp;  Token = "Token"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;  Token = "Token",<br>
 &nbsp;&nbsp;&nbsp;&nbsp;  // Onderstaande zorgt voor de juiste authorisatie string<br>
 &nbsp;&nbsp;&nbsp;&nbsp;  BinaryToken = "AfasToke " & Text.Tobinary(Token),<br>
 &nbsp;&nbsp;&nbsp;&nbsp;  // Vul in onderstaande de URL voor verbinding in<br>
@@ -52,10 +52,10 @@ let<br>
 &nbsp;&nbsp;&nbsp;&nbsp;  Connector = test_connector,<br>
 &nbsp;&nbsp;&nbsp;&nbsp;  // Vul het aantal regels dat geskipt moet worden in onderstaande waarde<br>
 &nbsp;&nbsp;&nbsp;&nbsp;  skipvalue = -1,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;  Skip = "?skip=" & skipvalue<br>
+&nbsp;&nbsp;&nbsp;&nbsp;  Skip = "?skip=" & skipvalue,<br>
 &nbsp;&nbsp;&nbsp;&nbsp;  // Vul het aantal regels dat opgehaald moet worden in onderstaande waarde<br>
 &nbsp;&nbsp;&nbsp;&nbsp;  takevalue = -1,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;  Take = "?take=" & takevalue<br>
+&nbsp;&nbsp;&nbsp;&nbsp;  Take = "?take=" & takevalue,<br>
 &nbsp;&nbsp;&nbsp;&nbsp;  Source = Json.Document(Web.Contents(URL&Connector&Skip&Take,[Headers=[Autorisation=BinaryToken]]))<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
 in<br>
