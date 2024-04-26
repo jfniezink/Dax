@@ -124,3 +124,9 @@ ORDER BY( table [ column ]) %efines the sort order of a column. Every column can
 | && | AND conditon | ([City] = "Bru") && ([Return] = "Yes"))  |
 | || | OR condition | ([City] = "Bru") || ([Return] = "Yes"))  |
 | IN {} | OR condition for each row | Product[Color] IN {"Red", "Blue", "Gold"} |
+
+# Color Use
+3, 6 or 8-digit hex codes, for example #3E4AFF. Make sure you include the # symbol at the start of the code.
+RGB or RGBA values, like RGBA(234, 234, 234, 0.5).
+HSL or HSLA values, like HSLA(123, 75%, 75%, 0.5).
+Color names, such as Green, SkyBlue, or PeachPuff.
