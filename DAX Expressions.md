@@ -1,49 +1,50 @@
-# Counts<br>
-<br>
-&nbsp;&nbsp;&nbsp;&nbsp;= Distintcount([waarde])<br>
-<br>
+# Counts
+```objectivec 
+=
+Distintcount([waarde])
+```
 
-# Running total<br>
-
-RunningTotalTrajecten = IF(SELECTEDVALUE(Dim_Date[date]) >= TODAY(),BLANK(),<br>
-CALCULATE([Aantal Trajecten],<br>
-&nbsp;&nbsp;&nbsp;&nbsp;    FILTER(ALLSELECTED(Dim_Date[Date]),<br>
-&nbsp;&nbsp;&nbsp;&nbsp;    Dim_Date[Date] <= MAX(Dim_Date[Date])<br>
-&nbsp;&nbsp;&nbsp;&nbsp;    ),<br>
-&nbsp;&nbsp;&nbsp;&nbsp;    Dim_Date[Date] <= TODAY(),<br>
-&nbsp;&nbsp;&nbsp;&nbsp;    Dim_Date[Jaar] = 2024<br>
-))<br>
-<br>
-
+# Running total
+```objectivec 
+=
+IF(SELECTEDVALUE(Dim_Date[date]) >= TODAY(),BLANK(),
+CALCULATE([Aantal Trajecten],
+     FILTER(ALLSELECTED(Dim_Date[Date]),
+     Dim_Date[Date] <= MAX(Dim_Date[Date])
+     ),
+     Dim_Date[Date] <= TODAY(),
+     Dim_Date[Jaar] = 2024
+))
+```
 # Regressie analyse<br>
-
-Linear regression Trajecten = <br>
-VAR Known =<br>
-&nbsp;&nbsp;&nbsp;&nbsp;    FILTER (<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;        SELECTCOLUMNS (<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;            ALLSELECTED ( 'Dim_Date'[Date] ), // Date tabel date column<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;            "Known[X]", 'Dim_Date'[Date], <br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;            "Known[Y]", [RunningTotalTrajecten] // Runing totals<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;        ),<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;        AND (<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;            NOT ( ISBLANK ( Known[X] ) ),<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;            NOT ( ISBLANK ( Known[Y] ) )<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;        )<br>
-&nbsp;&nbsp;&nbsp;&nbsp;    )<br>
-VAR SlopeIntercept =<br>
-&nbsp;&nbsp;&nbsp;&nbsp;    LINESTX(Known, Known[Y], Known[X])<br>
-VAR Slope =<br>
-&nbsp;&nbsp;&nbsp;&nbsp;    SELECTCOLUMNS(SlopeIntercept, [Slope1])<br>
-VAR Intercept = <br>
-&nbsp;&nbsp;&nbsp;&nbsp;    SELECTCOLUMNS(SlopeIntercept, [Intercept])<br>
-RETURN<br>
-&nbsp;&nbsp;&nbsp;&nbsp;    SUMX (<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;        DISTINCT ( 'Dim_Date'[Date] ),<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;        Intercept + Slope * 'Dim_Date'[Date]<br>
-&nbsp;&nbsp;&nbsp;&nbsp;    )<br>
-
-<br>
-
+```objectivec
+=
+VAR Known =
+     FILTER (
+         SELECTCOLUMNS (
+             ALLSELECTED ( 'Dim_Date'[Date] ), // Date tabel date column
+             "Known[X]", 'Dim_Date'[Date],
+             "Known[Y]", [RunningTotalTrajecten] // Runing totals
+         ),
+         AND (
+         NOT ( ISBLANK ( Known[X] ) ),
+         NOT ( ISBLANK ( Known[Y] ) )
+         )
+     )
+VAR SlopeIntercept =
+     LINESTX(Known, Known[Y], Known[X])
+VAR Slope =
+     SELECTCOLUMNS(SlopeIntercept, [Slope1])
+VAR Intercept =
+     SELECTCOLUMNS(SlopeIntercept, [Intercept])
+RETURN
+     SUMX (
+         DISTINCT ( 'Dim_Date'[Date] ),
+         Intercept + Slope * 'Dim_Date'[Date]
+     )
+```
 # Totals
+```objectivec 
+=
 TOTALYTD()
-
+```
