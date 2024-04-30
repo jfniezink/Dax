@@ -125,3 +125,43 @@ let<br>
 &nbsp;&nbsp;&nbsp;&nbsp;Source = Xml.Tables(Web.Contents(url, [Content=Text.ToBinary(SOAPEnvelope), Headers = options]))<br>
 in<br>
 &nbsp;&nbsp;&nbsp;&nbsp;Source<br>
+```m
+let
+    // Deze Query kan gebruikt worden om via SOAP Api (xml output) AFAS get connectoren aan te spreken.
+    // Parameters
+    url = "[url]", // vervang [url] door je eigen SOAP URL
+    token = "", // vul hier je eigen afas token tussen quotes
+    skip = "-1", // vul hier het aantal dat geskipt moet worden tussen quotes. -1 voor alles
+    take = "-1", // vul hier het aantal dat opgehaald moet worden tussen quotes. -1 voor alles
+    ConnectorID = "", // vul hier de connector ID dat aangesproken moet worden tussen quotes
+
+    SOAPEnvelope =
+        "
+        &#60soap:Envelope
+            xmlns:xsi=#(0022)http://www.w3.org/2001/XMLSchema-instance#(0022)
+            xmlns:xsd=#(0022)http://www.w3.org/2001/XMLSchema#(0022)
+            xmlns:soap=#(0022)http://schemas.xmlsoap.org/soap/envelope/#(0022)>
+                &#60soap:Body>
+                    &#60GetData
+                        xmlns=#(0022)urn:Afas.Profit.Services#(0022)>
+                        &#60token>
+                            &#60![CDATA[" & token & "]]>
+                        &#60/token>
+                        &#60connectorId>" & ConnectorID & "&#60/connectorId>
+                        &#60skip>" & skip & "&#60/skip>
+                        &#60take>" & take & "&#60/take>
+                        &#60/GetData>
+                    &#60/soap:Body>
+                &#60/soap:Envelope>
+        ",
+
+    options = [
+        #"Content-Type"="text/xml;charset=utf-8"
+    ],
+
+    Source = Xml.Tables(Web.Contents(url, [Content=Text.ToBinary(SOAPEnvelope), Headers = options]))
+in
+    Source
+
+console.log('Hello world');
+```
