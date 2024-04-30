@@ -89,13 +89,11 @@ in<br>
 &nbsp;&nbsp;&nbsp;&nbsp;Source<br><br>
 
 ## SOAP API AFAS connector
-
 let<br>
 &nbsp;&nbsp;&nbsp;&nbsp;// Deze Query kan gebruikt worden om via SOAP Api (xml output) AFAS get connectoren aan te spreken. <br>
 &nbsp;&nbsp;&nbsp;&nbsp;// Parameters <br>
 &nbsp;&nbsp;&nbsp;&nbsp;url = "[url]", // vervang [url] door je eigen SOAP URL<br>
 &nbsp;&nbsp;&nbsp;&nbsp;token = "", // vul hier je eigen afas token tussen quotes<br>
-&nbsp;&nbsp;&nbsp;&nbsp;connector = "", // vul hier de naam van de connector tussen quotes<br>
 &nbsp;&nbsp;&nbsp;&nbsp;skip = "-1", // vul hier het aantal dat geskipt moet worden tussen quotes. -1 voor alles<br>
 &nbsp;&nbsp;&nbsp;&nbsp;take = "-1", // vul hier het aantal dat opgehaald moet worden tussen quotes. -1 voor alles<br>
 &nbsp;&nbsp;&nbsp;&nbsp;SOAPEnvelope = <br>
@@ -110,14 +108,13 @@ let<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\<token><br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\<![CDATA[" & token & "]]><br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\</token><br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\<connectorId>" & connector & "\</connectorId><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\<connectorId>Profit_Address\</connectorId><br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\<skip>" & skip & "\</skip><br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\<take>" & take & "\</take><br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\</GetData><br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\</soap:Body><br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\</soap:Envelope><br>
 &nbsp;&nbsp;&nbsp;&nbsp;",<br><br>
-
 &nbsp;&nbsp;&nbsp;&nbsp;options = [<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#"Content-Type"="text/xml;charset=utf-8"<br>
 &nbsp;&nbsp;&nbsp;&nbsp;],<br>
