@@ -36,95 +36,60 @@ sharepoint.files(url as text) voor sharepoint files<br>
 sharepoint.contents(url as text, [ApiVersion = 15]) voor sharepoint contents. <br>
 
 ## Rest API AFAS connector
+```m
+let
+    // Vul hier je token
+    Token = "",
 
-let<br>
-&nbsp;&nbsp;&nbsp;&nbsp;// Vul hier je token<br>
-&nbsp;&nbsp;&nbsp;&nbsp;Token = "",<br>
-     <br>
-&nbsp;&nbsp;&nbsp;&nbsp;// Onderstaande zorgt voor de juiste authorisatie string<br>
-&nbsp;&nbsp;&nbsp;&nbsp;BinaryToken = "AfasToken " & Binary.ToText(Text.ToBinary(Token)),<br>
-    <br>
+    // Onderstaande zorgt voor de juiste authorisatie string
+    BinaryToken = "AfasToken " & Binary.ToText(Text.ToBinary(Token)),
 
-&nbsp;&nbsp;&nbsp;&nbsp;// Vul je omgevingsID in onderstaande variabele in tussen ""<br>
-&nbsp;&nbsp;&nbsp;&nbsp;OmgevingsID = "000000",<br>
-  <br>
-&nbsp;&nbsp;&nbsp;&nbsp;// Op basis van soort omgeving veranderd de URL:<br>
-&nbsp;&nbsp;&nbsp;&nbsp;// Productie omgeving = https://000000.rest.afas.online/ProfitRestServices/connectors/<br>
-&nbsp;&nbsp;&nbsp;&nbsp;// Test omgeving = https://000000.resttest.afas.online/ProfitRestServices/connectors/<br>
-&nbsp;&nbsp;&nbsp;&nbsp;// Accept omgeving = https://000000.restaccept.afas.online/ProfitRestServices/connectors/<br>
-    <br>
-&nbsp;&nbsp;&nbsp;&nbsp;URL = "https://"& OmgevingsID &".rest.afas.online/ProfitRestServices/connectors/",<br>
-     <br>
-&nbsp;&nbsp;&nbsp;&nbsp;// Vul bij connector het ID van je connector in. Zorg dat je rechten hebt om deze aan te spreken.<br>
-&nbsp;&nbsp;&nbsp;&nbsp;Connector = "",<br>
-     <br>
-&nbsp;&nbsp;&nbsp;&nbsp;// Vul het aantal regels dat geskipt moet worden in onderstaande waarde<br>
-&nbsp;&nbsp;&nbsp;&nbsp;skipvalue = "-1",<br>
-     <br>
-&nbsp;&nbsp;&nbsp;&nbsp;// Onderstaande variabele zorgt voor de juiste request variabele in de url<br>
-&nbsp;&nbsp;&nbsp;&nbsp;Skip = "?skip=" & skipvalue,<br>
-     <br>
-&nbsp;&nbsp;&nbsp;&nbsp;// Vul het aantal regels dat opgehaald moet worden in onderstaande waarde<br>
-&nbsp;&nbsp;&nbsp;&nbsp;takevalue = "-1",<br>
-<br>
-&nbsp;&nbsp;&nbsp;&nbsp;// Onderstaande variabele zorgt voor de juiste request variabele in de url<br>
-&nbsp;&nbsp;&nbsp;&nbsp;Take = "?take=" & takevalue,<br>
-     <br>
-&nbsp;&nbsp;&nbsp;&nbsp;Source = <br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Json.Document(<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Web.Contents(<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;URL & <br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Connector & <br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Skip & <br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Take, <br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Headers=<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Authorization=BinaryToken<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)<br>
-in<br>
-&nbsp;&nbsp;&nbsp;&nbsp;Source<br><br>
+
+    // Vul je omgevingsID in onderstaande variabele in tussen ""
+    OmgevingsID = "000000",
+
+    // Op basis van soort omgeving veranderd de URL:
+    // Productie omgeving = https://000000.rest.afas.online/ProfitRestServices/connectors/
+    // Test omgeving = https://000000.resttest.afas.online/ProfitRestServices/connectors/
+    // Accept omgeving = https://000000.restaccept.afas.online/ProfitRestServices/connectors/
+
+    URL = "https://"& OmgevingsID &".rest.afas.online/ProfitRestServices/connectors/",
+
+    // Vul bij connector het ID van je connector in. Zorg dat je rechten hebt om deze aan te spreken.
+    Connector = "",
+
+    // Vul het aantal regels dat geskipt moet worden in onderstaande waarde
+    skipvalue = "-1",
+
+    // Onderstaande variabele zorgt voor de juiste request variabele in de url
+    Skip = "?skip=" & skipvalue,
+
+    // Vul het aantal regels dat opgehaald moet worden in onderstaande waarde
+    takevalue = "-1",
+
+    // Onderstaande variabele zorgt voor de juiste request variabele in de url
+    Take = "?take=" & takevalue,
+
+    Source =
+        Json.Document(
+            Web.Contents(
+                URL &
+                Connector &
+                Skip &
+                Take,
+                    [
+                        Headers=
+                            [
+                                Authorization=BinaryToken
+                            ]
+                        ]
+                    )
+                )
+in
+    Source
+```
 
 ## SOAP API AFAS connector
-let<br>
-&nbsp;&nbsp;&nbsp;&nbsp;// Deze Query kan gebruikt worden om via SOAP Api (xml output) AFAS get connectoren aan te spreken.<br>
-&nbsp;&nbsp;&nbsp;&nbsp;// Parameters<br>
-&nbsp;&nbsp;&nbsp;&nbsp;url = "[url]", // vervang [url] door je eigen SOAP URL <br>
-&nbsp;&nbsp;&nbsp;&nbsp;token = "", // vul hier je eigen afas token tussen quotes <br>
-&nbsp;&nbsp;&nbsp;&nbsp;skip = "-1", // vul hier het aantal dat geskipt moet worden tussen quotes. -1 voor alles <br>
-&nbsp;&nbsp;&nbsp;&nbsp;take = "-1", // vul hier het aantal dat opgehaald moet worden tussen quotes. -1 voor alles <br>
-&nbsp;&nbsp;&nbsp;&nbsp;ConnectorID = "", // vul hier de connector ID dat aangesproken moet worden tussen quotes <br>
-<br>
-&nbsp;&nbsp;&nbsp;&nbsp;SOAPEnvelope =<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<soap:Envelope<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;xmlns:xsi=#(0022)http://www.w3.org/2001/XMLSchema-instance#(0022)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;xmlns:xsd=#(0022)http://www.w3.org/2001/XMLSchema#(0022)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;xmlns:soap=#(0022)http://schemas.xmlsoap.org/soap/envelope/#(0022)><br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\<soap:Body><br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<GetData<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;xmlns=#(0022)urn:Afas.Profit.Services#(0022)><br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\<token><br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\<![CDATA[" & token & "]]><br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\</token><br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\<connectorId>" & ConnectorID & "\</connectorId><br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\<skip>" & skip & "\</skip><br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\<take>" & take & "\</take><br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\</GetData><br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\</soap:Body><br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\</soap:Envelope><br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;",<br>
-<br>
-&nbsp;&nbsp;&nbsp;&nbsp;options = [<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#"Content-Type"="text/xml;charset=utf-8"<br>
-&nbsp;&nbsp;&nbsp;&nbsp;],<br>
-<br>
-&nbsp;&nbsp;&nbsp;&nbsp;Source = Xml.Tables(Web.Contents(url, [Content=Text.ToBinary(SOAPEnvelope), Headers = options]))<br>
-in<br>
-&nbsp;&nbsp;&nbsp;&nbsp;Source<br>
 ```m
 let
     // Deze Query kan gebruikt worden om via SOAP Api (xml output) AFAS get connectoren aan te spreken.
@@ -162,6 +127,4 @@ let
     Source = Xml.Tables(Web.Contents(url, [Content=Text.ToBinary(SOAPEnvelope), Headers = options]))
 in
     Source
-
-console.log('Hello world');
 ```
