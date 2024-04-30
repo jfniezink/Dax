@@ -1,7 +1,7 @@
 # Power Query items
 
 ## Dim Date query <br>
-```xquery
+```objectivec
 let
      // Noem je datum tabel: Dim_Date
      // Variabelen
