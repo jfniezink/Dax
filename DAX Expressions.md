@@ -1,11 +1,11 @@
 # Counts
-```objectivec 
+```vbscript 
 =
 Distintcount([waarde])
 ```
 
 # Running total
-```objectivec 
+```vbscript 
 =
 IF(SELECTEDVALUE(Dim_Date[date]) >= TODAY(),BLANK(),
 CALCULATE([Aantal Trajecten],
@@ -17,7 +17,7 @@ CALCULATE([Aantal Trajecten],
 ))
 ```
 # Regressie analyse<br>
-```objectivec
+```vbscript
 =
 VAR Known =
      FILTER (
@@ -44,7 +44,7 @@ RETURN
      )
 ```
 # Totals
-```objectivec 
+```vbscript 
 =
 TOTALYTD()
 ```
