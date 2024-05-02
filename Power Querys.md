@@ -1,7 +1,7 @@
 # Power Query items
 
 ## Dim Date query <br>
-```objectivec
+```vbscript
 let
      // Noem je datum tabel: Dim_Date
      // Variabelen
@@ -30,7 +30,7 @@ in
 
 ## sharepoint
 
-```objectivec
+```vbscript
 // hiervoor moet je wel eigenaar van de site zijn.
 // voor persoonlijke onedrive is de url anders, namelijk; https://[domain]-my.sharepoint.com/ 
 sharepoint.files(url as text) voor sharepoint files
@@ -38,7 +38,7 @@ sharepoint.contents(url as text, [ApiVersion = 15]) voor sharepoint contents.
 ```
 
 ## Rest API AFAS connector
-```objectivec
+```vbscript
 let
     // Vul hier je token
     Token = "",
@@ -92,7 +92,7 @@ in
 ```
 
 ## SOAP API AFAS connector
-```objectivec
+```vbscript
 let
     // Deze Query kan gebruikt worden om via SOAP Api (xml output) AFAS get connectoren aan te spreken.
     // Parameters
