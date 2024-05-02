@@ -51,9 +51,9 @@ let
     OmgevingsID = "000000",
 
     // Op basis van soort omgeving veranderd de URL:
-    // Productie omgeving = https://000000.rest.afas.online/ProfitRestServices/connectors/
-    // Test omgeving = https://000000.resttest.afas.online/ProfitRestServices/connectors/
-    // Accept omgeving = https://000000.restaccept.afas.online/ProfitRestServices/connectors/
+    // Productie omgeving = "https://000000.rest.afas.online/ProfitRestServices/connectors/"
+    // Test omgeving = "https://000000.resttest.afas.online/ProfitRestServices/connectors/"
+    // Accept omgeving = "https://000000.restaccept.afas.online/ProfitRestServices/connectors/"
 
     URL = "https://"& OmgevingsID &".rest.afas.online/ProfitRestServices/connectors/",
 
