@@ -56,4 +56,10 @@ Unie | ∪ |  Geeft de unie van twee sets aan.
 Doorsnede | ∩ |  Geeft de doorsnede van twee sets aan.
 Complement | Ac |  Geeft het complement van set A aan.
 Cartesisch product | A×B |  Geeft het cartesisch product van twee sets aan.
-```
+
+
+# More Characters with UNICHAR code:
+https://www.vertex42.com/ExcelTips/unicode-symbols.html
+
+
+
