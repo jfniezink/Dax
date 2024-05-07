@@ -81,6 +81,8 @@ VAR Pearson_Denominator =
 RETURN
     DIVIDE ( Pearson_Numerator, Pearson_Denominator )
 ```
+https://community.fabric.microsoft.com/t5/Quick-Measures-Gallery/Correlation-coefficient/m-p/196274
+
 # Totals
 
 ```vbscript 
