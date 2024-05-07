@@ -43,7 +43,46 @@ RETURN
          Intercept + Slope * 'Dim_Date'[Date]
      )
 ```
+# Correlation Coefficient 
+```vbscript
+= 
+VAR Correlation_Table =
+    FILTER (
+        ADDCOLUMNS (
+            VALUES ( Data[Item] ),
+            "Value_X", CALCULATE ( SUM ( Data[Value X] ) ),
+            "Value_Y", CALCULATE ( SUM ( Data[Value Y] ) )
+        ),
+        AND (
+            NOT ( ISBLANK ( [Value_X] ) ),
+            NOT ( ISBLANK ( [Value_Y] ) )
+        )
+    )
+VAR Count_Items =
+    COUNTROWS ( Correlation_Table )
+VAR Sum_X =
+    SUMX ( Correlation_Table, [Value_X] )
+VAR Sum_X2 =
+    SUMX ( Correlation_Table, [Value_X] ^ 2 )
+VAR Sum_Y =
+    SUMX ( Correlation_Table, [Value_Y] )
+VAR Sum_Y2 =
+    SUMX ( Correlation_Table, [Value_Y] ^ 2 )
+VAR Sum_XY =
+    SUMX ( Correlation_Table, [Value_X] * [Value_Y] )
+VAR Pearson_Numerator =
+    Count_Items * Sum_XY - Sum_X * Sum_Y
+VAR Pearson_Denominator_X =
+    Count_Items * Sum_X2 - Sum_X ^ 2
+VAR Pearson_Denominator_Y =
+    Count_Items * Sum_Y2 - Sum_Y ^ 2
+VAR Pearson_Denominator =
+    SQRT ( Pearson_Denominator_X * Pearson_Denominator_Y )
+RETURN
+    DIVIDE ( Pearson_Numerator, Pearson_Denominator )
+```
 # Totals
+
 ```vbscript 
 =
 TOTALYTD()
