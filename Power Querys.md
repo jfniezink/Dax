@@ -324,22 +324,22 @@ let
 
     SOAPEnvelope =
         "
-        &#60soap:Envelope
+        <soap:Envelope
             xmlns:xsi=#(0022)http://www.w3.org/2001/XMLSchema-instance#(0022)
             xmlns:xsd=#(0022)http://www.w3.org/2001/XMLSchema#(0022)
             xmlns:soap=#(0022)http://schemas.xmlsoap.org/soap/envelope/#(0022)>
-                &#60soap:Body>
-                    &#60GetData
+                <soap:Body>
+                    <GetData
                         xmlns=#(0022)urn:Afas.Profit.Services#(0022)>
-                        &#60token>
-                            &#60![CDATA[" & token & "]]>
-                        &#60/token>
-                        &#60connectorId>" & ConnectorID & "&#60/connectorId>
-                        &#60skip>" & skip & "&#60/skip>
-                        &#60take>" & take & "&#60/take>
-                        &#60/GetData>
-                    &#60/soap:Body>
-                &#60/soap:Envelope>
+                        <token>
+                            <![CDATA[" & token & "]]>
+                        </token>
+                        <connectorId>" & ConnectorID & "</connectorId>
+                        <skip>" & skip & "</skip>
+                        <take>" & take & "</take>
+                        </GetData>
+                    </soap:Body>
+                </soap:Envelope>
         ",
 
     options = [
