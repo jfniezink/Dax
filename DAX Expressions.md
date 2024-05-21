@@ -24,6 +24,30 @@ CALCULATE([Aantal Trajecten],
 ))
 ```
 
+# Table Creation
+**Method 1** | Table without Column titles
+```vbscript 
+Sample Table = {
+    (1,"the first row",DATE(2019,1,1)),
+    (3,"the second row",),
+    (3,"the second row","something")
+    }
+```
+
+**Method 2**
+```vbscript 
+Sample Table = DATATABLE(
+    "First Name",STRING, // Add Column title and datatype
+    "Last Name",STRING,
+    {
+        {"Reza","Rad"}, // fill data for each row
+        {"Leila","Etaati"},
+        {"someone",},
+        {"Unknown",blank()}
+    }
+    )
+```
+
 # Standard Deviation
 
 **Calculate variance in a group**
