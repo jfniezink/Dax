@@ -4,6 +4,13 @@
 Distintcount([waarde])
 ```
 
+# Totals
+
+```vbscript 
+=
+TOTALYTD()
+```
+
 # Running total
 ```vbscript 
 =
@@ -16,6 +23,42 @@ CALCULATE([Aantal Trajecten],
      Dim_Date[Jaar] = 2024
 ))
 ```
+
+# Standard Deviation
+
+**Calculate variance in a group**
+
+Used table:
+| Participant | Score |
+|:-:|:-:|
+| 1 | 5 |
+| 2 | 6 |
+| 3 | 7 |
+| 4 | 8 |
+| 5 | 9 |
+
+```vbscript
+=
+Deviatie = 
+// average of total entries
+VAR _Average = AVERAGE('Participants 1'[Score])
+
+// Calculate distance. Check variable. Must be 0
+VAR _Distance = SUMX('Participants 1', 'Participants 1'[Score] - _Average)
+
+// calculate the sum of power of distance between score and average. 
+VAR _PowerDistance = SUMX('Participants 1', POWER (('Participants 1'[Score] - _Average),2)  )
+
+// Total entries
+VAR _entries = COUNT('Participants 1'[Participant])
+
+// Calculate Variance. Square root of distance to the power of 2 divided by count of entries. 
+VAR _Variance = SQRT((_PowerDistance / _entries))
+
+RETURN
+_Variance
+```
+
 # Regressie analyse<br>
 ```vbscript
 =
@@ -83,9 +126,3 @@ RETURN
 ```
 https://community.fabric.microsoft.com/t5/Quick-Measures-Gallery/Correlation-coefficient/m-p/196274
 
-# Totals
-
-```vbscript 
-=
-TOTALYTD()
-```
