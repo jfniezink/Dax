@@ -248,6 +248,34 @@ in
 ```
 # connectors
 
+## VisualCrossing weather data
+
+```vbscript
+let
+    // Let op dat er maar maximaal 1000 records per dag opgehaald kunnen worden. Anders komt een Http 429 error
+    // https://www.visualcrossing.com/
+    forecast_days = 14, // max 14 days!
+    startdatum = "2023-01-01", // vul de datum als tekst in
+    einddatum = // datum van vandaag wordt vanzelf erin gezet. 
+        Text.Format(
+            "#{0}-#{1}-#{2}", 
+                {   Text.From(Date.Year(Date.AddDays(DateTime.LocalNow(),forecast_days))),
+                    if Date.Month(Date.AddDays(DateTime.LocalNow(),14)) < 10 then "0" & Text.From(Date.Month(Date.AddDays(DateTime.LocalNow(),14))) else Text.From(Date.Month(Date.AddDays(DateTime.LocalNow(),14))), 
+                    if Date.Day(Date.AddDays(DateTime.LocalNow(),14)) < 10 then "0" & Text.From(Date.Day(Date.AddDays(DateTime.LocalNow(),14))) else Text.From(Date.Day(Date.AddDays(DateTime.LocalNow(),14)))
+                }
+        ),
+    APIKey = "00", //Enter Api Key from Visual Crossing
+    Bron = Json.Document(Web.Contents(
+        "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/Nederland/" 
+        & startdatum & "/" & einddatum & 
+        "?unitGroup=metric&include=days&key=" & APIKey & "&contentType=json")),
+    days = Table.FromRecords( Bron[days] ),
+    #"Rijen gesorteerd" = Table.Sort(days,{{"datetime", Order.Descending}}),
+    #"Type gewijzigd" = Table.TransformColumnTypes(#"Rijen gesorteerd",{{"datetime", type date}, {"datetimeEpoch", Int64.Type}, {"tempmax", type number}, {"tempmin", type number}, {"temp", type number}, {"feelslikemax", type number}, {"feelslikemin", type number}, {"feelslike", type number}, {"dew", type number}, {"humidity", type number}, {"precip", type number}, {"precipprob", type number}, {"precipcover", type number}, {"preciptype", type any}, {"snow", Int64.Type}, {"snowdepth", Int64.Type}, {"windgust", type number}, {"windspeed", type number}, {"winddir", type number}, {"pressure", type number}, {"cloudcover", type number}, {"visibility", type number}, {"solarradiation", type number}, {"solarenergy", type number}, {"uvindex", Int64.Type}, {"severerisk", Int64.Type}, {"sunrise", type time}, {"sunriseEpoch", Int64.Type}, {"sunset", type time}, {"sunsetEpoch", Int64.Type}, {"moonphase", type number}, {"conditions", type text}, {"description", type text}, {"icon", type text}, {"stations", type any}, {"source", type text}})
+in
+    #"Type gewijzigd"
+```
+
 ## sharepoint
 
 ```vbscript
